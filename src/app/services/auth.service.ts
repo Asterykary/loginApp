@@ -22,7 +22,7 @@ export class AuthService {
    }
 
   logout() {
-
+    localStorage.removeItem('token');
   }
 
   login(usuario: UsuarioModel) {
@@ -68,12 +68,16 @@ export class AuthService {
   }
 
   leerToken() {
-    if(localStorage.getItem('token')){
+    if(localStorage.getItem('token')) {
       this.userToken = localStorage.getItem('token');
     } else {
       this.userToken = '';
     }
 
     return this.userToken;
+  }
+
+  estaAuntenticado(): boolean {
+    return this.userToken.length > 2;
   }
 }
